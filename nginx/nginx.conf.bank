@@ -1,0 +1,17 @@
+events {}
+
+http {
+    server {
+        listen 3301;
+        server_name localhost;
+
+        root [DIR];
+        location / {
+            index index.html;
+        }
+
+        location /api {
+            proxy_pass http://localhost:3000;
+        }
+    }
+}

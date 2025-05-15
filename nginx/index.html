@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cors Solution With Nginx</title>
+</head>
+<body>
+    <button onclick="fetchWithProxy()">With Proxy</button>
+    <button onclick="fetchWithoutProxy()">Without Proxy</button>
+    <div>
+        <h2>請打開控制台查看日誌結果。</h2>
+    </div>
+</body>
+<script>
+    function fetchWithProxy() {
+        console.log('start fetch with proxy')
+
+        fetch('/api/test')
+            .then(res => res.json())
+            .then(res => console.log('result', res.message))
+            .catch((error) => {
+                alert(error.message)
+            })
+    }
+
+    function fetchWithoutProxy() {
+        console.log('start fetch without proxy')
+        
+        fetch('http://localhost:3000/api/test')
+            .catch((error) => {
+                console.log('error', error.message)
+            })
+    }
+</script>
+</html>
